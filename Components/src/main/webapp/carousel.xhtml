@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Carousel Example</title>
+</h:head>
+<h:body>
+
+	<p:outputLabel value="Carousel Slider Example"></p:outputLabel>
+	<p:carousel value="#{carBean.cars}" var="car" autoPlayInterval="3000" numVisible="3" responsive="true">
+		<p:graphicImage value="resources/images/car/#{car.manufacturer}.jpg" />
+		<h:outputText value="Model: #{car.model} " />
+		<h:outputText value="Year: #{car.year} " />
+		<h:outputText value="Color: #{car.color} " />
+	</p:carousel>
+
+	<p:outputLabel value="Carousel Tab Example"></p:outputLabel>
+	<p:carousel rows="1" itemStyle="height:200px;width:600px;" responsive="true">
+		<p:tab title="Car I">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:graphicImage value="resources/images/car/ManufacturerX.jpg" />
+				<h:outputText
+					value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu pretium erat. Fusce imperdiet quam id luctus tempor. Aenean sed turpis varius, venenatis enim id, tristique massa. Ut vel dui sit amet nunc cursus ultricies. Proin condimentum magna eget est elementum tristique. Integer condimentum elit mauris, vel malesuada neque suscipit sit amet. Morbi lectus nibh, interdum sodales posuere eu, scelerisque sit amet nisl." />
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="Car II">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:graphicImage value="resources/images/car/ManufacturerX.jpg" />
+				<h:outputText
+					value="Etiam velit nunc, ornare non lectus facilisis, sagittis eleifend tellus. Curabitur posuere congue varius. Nunc quis efficitur erat. Nunc euismod lorem at elit fermentum, sodales tempus felis pretium. Etiam eleifend, tortor eget luctus dapibus, magna orci interdum ligula, nec pretium est lectus sit amet ligula. Aliquam nec justo dolor. Phasellus ullamcorper rhoncus leo. Aenean ac nulla vel mi eleifend euismod non nec eros. Vivamus eget lectus in arcu varius euismod. In fringilla aliquam molestie." />
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="Car III">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:graphicImage value="resources/images/car/ManufacturerX.jpg" />
+				<h:outputText
+					value="Integer gravida eleifend arcu congue accumsan. Quisque vitae nunc feugiat, venenatis augue vel, dignissim nisl. Mauris tempus ex sit amet nunc tempus, ut dapibus eros maximus. Curabitur ac felis erat. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum eget ligula ut eros faucibus tincidunt ut convallis nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc lacus nibh, molestie quis sagittis ac, varius ut erat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." />
+			</h:panelGrid>
+		</p:tab>
+	</p:carousel>
+	
+	<p:outputLabel value="Carousel Selected Example" />
+	<h:form id="form">
+		<p:carousel value="#{carBean.cars}" var="car" itemStyle="width:200px">
+			<p:graphicImage value="resources/images/car/#{car.manufacturer}.jpg" />
+			<p:commandLink update=":form" oncomplete="PF('dlg').show()">
+				<h:outputText value="Model: #{car.model}" />
+				<f:setPropertyActionListener value="#{car}" target="#{carBean.selected}" />
+			</p:commandLink>
+		</p:carousel>
+		<p:dialog widgetVar="dlg">
+			<p:graphicImage id="detail1" value="resources/images/car/#{carBean.selected.manufacturer}.jpg" />
+			<h:outputText id="detail2" value="Model : #{carBean.selected.model} " />
+			<h:outputText id="detail3" value="Year : #{carBean.selected.year} " />
+			<h:outputText id="detail4" value="Color : #{carBean.selected.color} " />
+		</p:dialog>
+	</h:form>
+
+</h:body>
+</html>
