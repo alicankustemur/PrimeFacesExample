@@ -51,10 +51,18 @@
 			</p:commandLink>
 		</p:carousel>
 		<p:dialog widgetVar="dlg">
-			<p:graphicImage id="detail1" value="resources/images/car/#{carBean.selected.manufacturer}.jpg" />
-			<h:outputText id="detail2" value="Model : #{carBean.selected.model} " />
-			<h:outputText id="detail3" value="Year : #{carBean.selected.year} " />
-			<h:outputText id="detail4" value="Color : #{carBean.selected.color} " />
+			<p:panelGrid columns="2" columnClasses="label,value">
+				<f:facet name="header">
+					<p:graphicImage id="detail1" value="resources/images/car/#{carBean.selected.manufacturer}.jpg" />
+				</f:facet>
+								
+				<h:outputText value="Model" style="font-weight:bold" />
+				<h:outputText id="detail2" value="#{carBean.selected.model}" />
+				<h:outputText value="Year" style="font-weight:bold" />
+				<h:outputText id="detail3" value="#{carBean.selected.year}" />
+				<h:outputText value="Color" style="font-weight:bold"/>
+				<h:outputText id="detail4" value="#{carBean.selected.color}" />
+			</p:panelGrid>
 		</p:dialog>
 	</h:form>
 
